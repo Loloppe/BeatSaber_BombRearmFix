@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
+  "id": "BeatSaber_BombRearmFix",
+  "name": "BeatSaber_BombRearmFix",
+  "author": "Loloppe",
+  "version": "1.0.0",
+  "description": "",
+  "gameVersion": "1.35.0",
+  "dependsOn": {
+    "BSIPA": "^4.2.0"
+  }
+}
