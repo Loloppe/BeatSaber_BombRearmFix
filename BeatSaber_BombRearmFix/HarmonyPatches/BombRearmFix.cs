@@ -8,7 +8,7 @@ namespace BeatSaber_BombRearmFix.HarmonyPatches
     {
         static bool Prefix(NoteController noteController)
         {
-            if (Config.Instance.Enabled && noteController.noteData.gameplayType == NoteData.GameplayType.Bomb)
+            if (Config.Instance.Enabled && noteController.noteData.gameplayType == NoteData.GameplayType.Bomb && !Plugin.InReplay)
             {
                 // Hide the bomb model and attempt to destroy it from memory.
                 var bomb = (BombNoteController)noteController;

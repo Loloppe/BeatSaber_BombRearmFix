@@ -16,7 +16,7 @@ namespace BeatSaber_BombRearmFix
         internal static Plugin Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
         internal static Harmony Harmony;
-        internal static bool InReplay = false;
+        internal static bool InReplay { get; set; } = false;
 
         [Init]
         public Plugin(IPALogger logger, IPA.Config.Config conf)
