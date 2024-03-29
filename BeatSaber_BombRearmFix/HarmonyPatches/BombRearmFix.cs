@@ -1,31 +1,25 @@
 ﻿using HarmonyLib;
-using System;
+using UnityEngine;
 
 namespace BeatSaber_BombRearmFix.HarmonyPatches
 {
     [HarmonyPatch(typeof(BasicBeatmapObjectManager), nameof(BasicBeatmapObjectManager.DespawnInternal), typeof(NoteController))]
     internal class DespawnInternalPatch
     {
-        static bool Prefix(NoteController noteController, ref BasicBeatmapObjectManager __instance)
+        static bool Prefix(NoteController noteController)
         {
-            // Temp fix for the bomb re-arming bug that happen when _memoryPool.Despawn happen. No idea how to actually fix it and doing it this way seems to have no impact whatsoever on the performance so whatever.
-            switch (noteController.noteData.gameplayType)
+            if (Config.Instance.Enabled && noteController.noteData.gameplayType == NoteData.GameplayType.Bomb)
             {
-                case NoteData.GameplayType.Normal:
-                    __instance._basicGameNotePoolContainer.Despawn((GameNoteController)noteController);
-                    return false;
-                case NoteData.GameplayType.Bomb:
-                    //__instance._bombNotePoolContainer.Despawn((BombNoteController)noteController);
-                    return false;
-                case NoteData.GameplayType.BurstSliderHead:
-                    __instance._burstSliderHeadGameNotePoolContainer.Despawn((GameNoteController)noteController);
-                    return false;
-                case NoteData.GameplayType.BurstSliderElement:
-                    __instance._burstSliderGameNotePoolContainer.Despawn((BurstSliderGameNoteController)noteController);
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                // Hide the bomb model and attempt to destroy it from memory.
+                var bomb = (BombNoteController)noteController;
+                bomb._wrapperGO.SetActive(false);
+                GameObject.Destroy(bomb._wrapperGO);
+                GameObject.Destroy(bomb);
+                return false;
             }
+
+            // Default behavior if the plugin is disabled or if it's not a bomb.
+            return true;
         }
     }
 }
