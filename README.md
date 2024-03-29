@@ -4,7 +4,9 @@ This plugin fix a longstanding bug where bombs removal in internal memory during
 Normally, bombs become disabled (can't be cut) after they reach the Half Jump Mark based on the player HMD position (around 1m).
 If you try to hit bombs from the side/back, they won't get cut, but after one or two seconds, it will break and future bombs will get cut if you try again (this is per map).  
 
-Note: The bug will still be there in multiplayer lobby, as it use different code for that. I could fix that too but idk.
+Note:
+- Using this plugin will cause even more memory leak while playing maps with a lot of bombs (not really lag but high RAM usage).
+- This plugin doesn't work in multiplayer.
 
 Expected gameplay behaviour of a bomb according to the current game logic:
 - Bomb approach the player.
