@@ -5,6 +5,7 @@ Normally, bombs become disabled (can't be cut) after they reach the Half Jump Ma
 If you try to hit bombs from the side/back, they won't get cut, but after one or two seconds, it will break and future bombs will get cut if you try again (this is per map).  
 
 Note:
+- Include a setting menu to turn on/off the plugin.
 - Using this plugin will cause even more memory leak while playing maps with a lot of bombs (not really lag but high RAM usage).
 - This plugin doesn't work in multiplayer.
 
