@@ -4,9 +4,6 @@ This plugin fix a longstanding bug where bombs removal in internal memory during
 
 This is a backport of the fix in Beat Saber version 1.37
 
-Note:
-- Include a setting menu to turn on/off the plugin.
-
 Expected gameplay behaviour of a bomb according to the current game logic:
 - Bomb approach the player.
 - Half Jump Mark (in front of the player) is reached, noteJumpDidPassHalfEvent get triggered, which trigger HandleDidPassHalfJump from BombNoteController.
